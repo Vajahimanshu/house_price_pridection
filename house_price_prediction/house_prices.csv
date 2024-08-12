@@ -1,0 +1,9 @@
+location,size,bedrooms,bathrooms,amenities,price
+Downtown,1200,3,2,"Pool,Gym",500000
+Suburb,1500,4,3,"Garden,Garage",600000
+City Center,900,2,1,"Pool,Gym",450000
+Rural,2000,5,3,"Garden,Garage",550000
+Downtown,1100,2,2,"Pool,Gym",480000
+Suburb,1400,3,2,"Garden,Garage",520000
+City Center,950,2,1,"Pool,Gym",460000
+Rural,2100,4,3,"Garden,Garage",570000

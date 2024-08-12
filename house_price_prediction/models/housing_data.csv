@@ -1,0 +1,11 @@
+id,location,size_sqft,bedrooms,bathrooms,garage,amenities,price
+1,New York,850,2,1,1,"Elevator;Gym;Pool",700000
+2,Los Angeles,1200,3,2,2,"Pool;Garden",950000
+3,San Francisco,900,2,2,1,"Parking;Gym;Garden",800000
+4,Boston,1500,4,3,2,"Elevator;Gym;Garden;Pool",1200000
+5,Chicago,1100,3,2,1,"Parking;Gym;Garden",850000
+6,Seattle,1000,3,2,1,"Elevator;Parking;Garden",900000
+7,Austin,1300,3,2,2,"Pool;Gym;Garden",1000000
+8,Miami,1400,4,3,2,"Parking;Garden;Pool",1050000
+9,Denver,950,2,2,1,"Elevator;Parking;Garden",750000
+10,Philadelphia,1600,4,3,2,"Elevator;Gym;Pool;Parking",1150000

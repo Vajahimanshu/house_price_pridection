@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Prices Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #main {
+            background: #1e1e1e;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #444;
+            color: #fff;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #555;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-left: 6px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main">
+            <h1>Housing Prices Prediction</h1>
+            <div class="instructions">
+                <p>Please fill in the details below to get a prediction for the house price:</p>
+                <ul>
+                    <li><strong>Location:</strong> Enter the location of the house (e.g., Downtown, Suburb).</li>
+                    <li><strong>Size:</strong> Enter the size of the house in square feet.</li>
+                    <li><strong>Bedrooms:</strong> Enter the number of bedrooms.</li>
+                    <li><strong>Bathrooms:</strong> Enter the number of bathrooms.</li>
+                    <li><strong>Amenities:</strong> Enter the amenities available (e.g., Pool, Gym, Garden, Garage). Separate multiple amenities with commas.</li>
+                </ul>
+            </div>
+            <form id="predictionForm">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="e.g., Downtown" required>
+                
+                <label for="size">Size (sq ft):</label>
+                <input type="number" id="size" name="size" placeholder="e.g., 1200" required>
+                
+                <label for="bedrooms">Bedrooms:</label>
+                <input type="number" id="bedrooms" name="bedrooms" placeholder="e.g., 3" required>
+                
+                <label for="bathrooms">Bathrooms:</label>
+                <input type="number" id="bathrooms" name="bathrooms" placeholder="e.g., 2" required>
+                
+                <label for="amenities">Amenities (comma separated):</label>
+                <input type="text" id="amenities" name="amenities" placeholder="e.g., Pool,Gym" required>
+                
+                <input type="submit" value="Predict Price">
+            </form>
+            <h2 id="result"></h2>
+            <h2 id="totalPrice"></h2>
+        </div>
+    </div>
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            console.log("Sending data:", data);  // Debug print
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Received result:", result);  // Debug print
+                document.getElementById('result').innerText = 'Predicted Price: ' + result.prediction;
+                document.getElementById('totalPrice').innerText = 'Total Price: ' + result.total_price;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
